@@ -1,4 +1,14 @@
 {
   "name": "mapcameraapp",
-  "displayName": "mapcameraapp"
+  "displayName": "mapcameraapp",
+  "expo": {
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "The app needs access to your camera to let you take pictures."
+        }
+      ]
+    ]
+  }
 }
