@@ -6,37 +6,62 @@ import AllPlaces from '../screens/AllPlaces';
 import AddPlace from '../screens/AddPlace';
 import IconButton from '../components/UI/IconButton';
 import useAppNavigation from '../hooks/useAppNavigation';
+import { useCallback } from 'react';
+import { Colors } from '../constants/colors';
 
 const Stack = createNativeStackNavigator();
 
 const NativeStack = () => {
   const navigation = useAppNavigation();
-  const getHeaderRight: Exclude<
-    NativeStackNavigationOptions['headerRight'],
-    undefined
-  > = ({ tintColor }) => {
-    const handlePress = () => {
-      navigation.navigate('AddPlace');
-    };
-    return (
-      <IconButton
-        icon="add"
-        size={24}
-        color={tintColor ?? 'white'}
-        onPress={handlePress}
-      />
-    );
-  };
+  const headerRight = useCallback<
+    Exclude<NativeStackNavigationOptions['headerRight'], undefined>
+  >(
+    ({ tintColor }) => {
+      const handlePress = () => {
+        navigation.navigate('AddPlace');
+      };
+      return (
+        <IconButton
+          icon="add"
+          size={24}
+          color={tintColor ?? 'white'}
+          onPress={handlePress}
+        />
+      );
+    },
+    [navigation],
+  );
+
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: Colors.primary500,
+        },
+        headerTintColor: Colors.gray700,
+        contentStyle: {
+          backgroundColor: Colors.gray700,
+        },
+      }}
+    >
       <Stack.Screen
         name="AllPlaces"
         component={AllPlaces}
         options={{
-          headerRight: getHeaderRight,
+          title: 'Your Favorite Places',
+          headerTitleAlign: 'center',
+          headerRight: headerRight,
         }}
       />
-      <Stack.Screen name="AddPlace" component={AddPlace} />
+      <Stack.Screen
+        name="AddPlace"
+        component={AddPlace}
+        options={{
+          title: 'Add a New Place',
+          headerBackButtonDisplayMode: 'default',
+          headerTitleAlign: 'center',
+        }}
+      />
     </Stack.Navigator>
   );
 };

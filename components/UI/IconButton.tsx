@@ -26,7 +26,11 @@ const IconButton = ({
 export default IconButton;
 
 const styles = StyleSheet.create({
-  button: {},
+  button: {
+    padding: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   pressed: {
     opacity: 0.7,
   },
