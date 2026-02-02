@@ -1,16 +1,9 @@
 import { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Button,
-  Platform,
-  Alert,
-  Image,
-} from 'react-native';
+import { View, Text, StyleSheet, Platform, Alert, Image } from 'react-native';
 import { launchCamera } from 'react-native-image-picker';
 import { PERMISSIONS, RESULTS, check, request } from 'react-native-permissions';
 import { Colors } from '../../constants/colors';
+import OutlinedButton from '../UI/OutlinedButton';
 
 const ImagePicker = () => {
   const [pickedImage, setPickedImage] = useState<string | null>(null);
@@ -77,7 +70,9 @@ const ImagePicker = () => {
   return (
     <View>
       <View style={styles.imagePreview}>{imagePreview}</View>
-      <Button title="Pick Image" onPress={pickImageHandler} />
+      <OutlinedButton icon="camera" onPress={pickImageHandler}>
+        Pick Image
+      </OutlinedButton>
     </View>
   );
 };
