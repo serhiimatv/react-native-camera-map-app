@@ -57,5 +57,9 @@
 	<false/>
 	<key>NSCameraUsageDescription</key>
 	<string>Need permission to camera to take a places photos</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Need permission to location the user to add a place</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Need permission to location the user to add a place</string>
 </dict>
 </plist>

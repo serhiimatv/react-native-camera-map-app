@@ -2,9 +2,14 @@ import { View, StyleSheet } from 'react-native';
 import OutlinedButton from '../UI/OutlinedButton';
 import { Colors } from '../../constants/colors';
 
+import Geolocation from '@react-native-community/geolocation';
+
 const LocationPicker = () => {
   const getLocationHandler = () => {
     console.log('getLocationHandler');
+    Geolocation.getCurrentPosition(position => {
+      console.log('position', position);
+    });
   };
   const pickOnMapHandler = () => {
     console.log('pickOnMapHandler');
