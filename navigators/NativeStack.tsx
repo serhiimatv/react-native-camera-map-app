@@ -8,6 +8,7 @@ import IconButton from '../components/UI/IconButton';
 import useAppNavigation from '../hooks/useAppNavigation';
 import { useCallback } from 'react';
 import { Colors } from '../constants/colors';
+import Map from '../screens/Map';
 
 const Stack = createNativeStackNavigator();
 
@@ -58,6 +59,15 @@ const NativeStack = () => {
         component={AddPlace}
         options={{
           title: 'Add a New Place',
+          headerBackButtonDisplayMode: 'default',
+          headerTitleAlign: 'center',
+        }}
+      />
+      <Stack.Screen
+        name="Map"
+        component={Map}
+        options={{
+          title: 'Map',
           headerBackButtonDisplayMode: 'default',
           headerTitleAlign: 'center',
         }}

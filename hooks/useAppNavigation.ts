@@ -4,6 +4,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 export type AppNavigationParamList = {
   AllPlaces: undefined;
   AddPlace: undefined;
+  Map: undefined
 };
 
 type AppNavigationProp = NativeStackNavigationProp<AppNavigationParamList>;

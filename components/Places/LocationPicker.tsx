@@ -7,12 +7,15 @@ import Geolocation, {
 } from '@react-native-community/geolocation';
 import { getMapPreview } from '../../util/location';
 import { useState } from 'react';
+import useAppNavigation from '../../hooks/useAppNavigation';
 
 const LocationPicker = () => {
   const [pickedLocation, setPickedLocation] = useState<{
     lat: number;
     lng: number;
   } | null>(null);
+
+  const navigation = useAppNavigation();
 
   const getLocationHandler = async () => {
     Geolocation.getCurrentPosition(
@@ -29,7 +32,7 @@ const LocationPicker = () => {
     );
   };
   const pickOnMapHandler = () => {
-    console.log('pickOnMapHandler');
+    navigation.navigate('Map');
   };
 
   let locationPreview = <Text>No location picked yet.</Text>;
