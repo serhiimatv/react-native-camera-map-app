@@ -8,6 +8,7 @@ import MapView, {
 import useAppNavigation from '../hooks/useAppNavigation';
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import IconButton from '../components/UI/IconButton';
+import { NavigationList } from '../constants/navigation';
 
 const Map = () => {
   const [selectedLocation, setSelectedLocation] = useState<{
@@ -41,7 +42,7 @@ const Map = () => {
           );
           return;
         }
-        navigation.navigate('AddPlace', {
+        navigation.navigate(NavigationList.AddPlace, {
           pickedLocation: {
             lat: selectedLocation.lat,
             lng: selectedLocation.lng,

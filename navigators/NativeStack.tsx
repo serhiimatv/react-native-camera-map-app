@@ -5,12 +5,14 @@ import {
 import AllPlaces from '../screens/AllPlaces';
 import AddPlace from '../screens/AddPlace';
 import IconButton from '../components/UI/IconButton';
-import useAppNavigation from '../hooks/useAppNavigation';
 import { useCallback } from 'react';
 import { Colors } from '../constants/colors';
 import Map from '../screens/Map';
+import { NavigationList } from '../constants/navigation';
+import { AppNavigationParamList } from '../types/navigation.models';
+import useAppNavigation from '../hooks/useAppNavigation';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<AppNavigationParamList>();
 
 const NativeStack = () => {
   const navigation = useAppNavigation();
@@ -19,7 +21,7 @@ const NativeStack = () => {
   >(
     ({ tintColor }) => {
       const handlePress = () => {
-        navigation.navigate('AddPlace');
+        navigation.navigate(NavigationList.AddPlace);
       };
       return (
         <IconButton

@@ -6,16 +6,30 @@ import Geolocation, {
   GeolocationError,
 } from '@react-native-community/geolocation';
 import { getMapPreview } from '../../util/location';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { NavigationList } from '../../constants/navigation';
 import useAppNavigation from '../../hooks/useAppNavigation';
+import { RouteProp, useIsFocused, useRoute } from '@react-navigation/native';
+import { AppNavigationParamList } from '../../types/navigation.models';
 
 const LocationPicker = () => {
   const [pickedLocation, setPickedLocation] = useState<{
     lat: number;
     lng: number;
   } | null>(null);
+  const isFocused = useIsFocused();
 
   const navigation = useAppNavigation();
+  const route =
+    useRoute<
+      RouteProp<AppNavigationParamList, typeof NavigationList.AddPlace>
+    >();
+
+  useEffect(() => {
+    if (isFocused && route.params) {
+      setPickedLocation(route.params.pickedLocation);
+    }
+  }, [isFocused, route.params]);
 
   const getLocationHandler = async () => {
     Geolocation.getCurrentPosition(
@@ -32,7 +46,7 @@ const LocationPicker = () => {
     );
   };
   const pickOnMapHandler = () => {
-    navigation.navigate('Map');
+    navigation.navigate(NavigationList.Map);
   };
 
   let locationPreview = <Text>No location picked yet.</Text>;
