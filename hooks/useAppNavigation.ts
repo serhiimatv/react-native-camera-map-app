@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export type AppNavigationParamList = {
   AllPlaces: undefined;
-  AddPlace: undefined;
+  AddPlace: { pickedLocation: { lat: number, lng: number } } | undefined;
   Map: undefined
 };
 
