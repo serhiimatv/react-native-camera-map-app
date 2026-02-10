@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { Alert, StyleSheet } from 'react-native';
 import MapView, {
   MapPressEvent,
@@ -9,6 +9,7 @@ import useAppNavigation from '../hooks/useAppNavigation';
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import IconButton from '../components/UI/IconButton';
 import { NavigationList } from '../constants/navigation';
+import { StackActions } from '@react-navigation/native';
 
 const Map = () => {
   const [selectedLocation, setSelectedLocation] = useState<{
@@ -42,12 +43,14 @@ const Map = () => {
           );
           return;
         }
-        navigation.navigate(NavigationList.AddPlace, {
-          pickedLocation: {
-            lat: selectedLocation.lat,
-            lng: selectedLocation.lng,
-          },
-        });
+        navigation.dispatch(
+          StackActions.popTo(NavigationList.AddPlace, {
+            pickedLocation: {
+              lat: selectedLocation.lat,
+              lng: selectedLocation.lng,
+            },
+          }),
+        );
       };
       return (
         <IconButton
@@ -60,6 +63,10 @@ const Map = () => {
     },
     [navigation, selectedLocation],
   );
+
+  useEffect(() => {
+    console.log('Map mounted', navigation.getState());
+  }, [navigation]);
 
   useLayoutEffect(() => {
     navigation.setOptions({

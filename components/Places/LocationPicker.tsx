@@ -12,7 +12,11 @@ import useAppNavigation from '../../hooks/useAppNavigation';
 import { RouteProp, useIsFocused, useRoute } from '@react-navigation/native';
 import { AppNavigationParamList } from '../../types/navigation.models';
 
-const LocationPicker = () => {
+const LocationPicker = ({
+  onPickLocation,
+}: {
+  onPickLocation: (location: { lat: number; lng: number }) => void;
+}) => {
   const [pickedLocation, setPickedLocation] = useState<{
     lat: number;
     lng: number;
@@ -31,6 +35,12 @@ const LocationPicker = () => {
     }
   }, [isFocused, route.params]);
 
+  useEffect(() => {
+    if (pickedLocation) {
+      onPickLocation(pickedLocation);
+    }
+  }, [pickedLocation, onPickLocation]);
+
   const getLocationHandler = async () => {
     Geolocation.getCurrentPosition(
       position => {
@@ -45,6 +55,7 @@ const LocationPicker = () => {
       },
     );
   };
+
   const pickOnMapHandler = () => {
     navigation.navigate(NavigationList.Map);
   };

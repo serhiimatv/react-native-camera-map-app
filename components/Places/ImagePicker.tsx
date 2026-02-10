@@ -5,7 +5,11 @@ import { PERMISSIONS, RESULTS, check, request } from 'react-native-permissions';
 import { Colors } from '../../constants/colors';
 import OutlinedButton from '../UI/OutlinedButton';
 
-const ImagePicker = () => {
+const ImagePicker = ({
+  onTakeImage,
+}: {
+  onTakeImage: (imageUri: string) => void;
+}) => {
   const [pickedImage, setPickedImage] = useState<string | null>(null);
 
   const checkCameraPermission = async () => {
@@ -60,6 +64,7 @@ const ImagePicker = () => {
     });
     if (image.assets?.[0]?.uri) {
       setPickedImage(image.assets[0].uri);
+      onTakeImage(image.assets[0].uri);
     }
   };
 
