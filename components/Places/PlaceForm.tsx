@@ -4,13 +4,19 @@ import { Colors } from '../../constants/colors';
 import ImagePicker from './ImagePicker';
 import LocationPicker from './LocationPicker';
 import Button from '../UI/Button';
+import Place from '../../models/place';
 
-const PlaceForm = () => {
+const PlaceForm = ({
+  onCreatePlace,
+}: {
+  onCreatePlace: (place: Place) => void;
+}) => {
   const [enteredTitle, setEnteredTitle] = useState<string>('');
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [pickedLocation, setPickedLocation] = useState<{
     lat: number;
     lng: number;
+    address: string;
   } | null>(null);
 
   const changeTitleHandler = (text: string) => {
@@ -22,19 +28,22 @@ const PlaceForm = () => {
   };
 
   const pickLocationHandler = useCallback(
-    (location: { lat: number; lng: number }) => {
+    (location: { lat: number; lng: number; address: string }) => {
       setPickedLocation(location);
     },
     [],
   );
 
   const savePlaceHandler = () => {
-    console.log(
-      'savePlaceHandler',
+    const place = new Place(
       enteredTitle,
-      selectedImage,
-      pickedLocation,
+      selectedImage ?? '',
+      pickedLocation?.address ?? '',
+      pickedLocation
+        ? { lat: pickedLocation.lat, lng: pickedLocation.lng }
+        : { lat: 0, lng: 0 },
     );
+    onCreatePlace(place);
   };
 
   return (

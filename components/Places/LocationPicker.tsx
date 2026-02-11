@@ -5,7 +5,7 @@ import { Colors } from '../../constants/colors';
 import Geolocation, {
   GeolocationError,
 } from '@react-native-community/geolocation';
-import { getMapPreview } from '../../util/location';
+import { getAddress, getMapPreview } from '../../util/location';
 import { useEffect, useState } from 'react';
 import { NavigationList } from '../../constants/navigation';
 import useAppNavigation from '../../hooks/useAppNavigation';
@@ -15,7 +15,11 @@ import { AppNavigationParamList } from '../../types/navigation.models';
 const LocationPicker = ({
   onPickLocation,
 }: {
-  onPickLocation: (location: { lat: number; lng: number }) => void;
+  onPickLocation: (location: {
+    lat: number;
+    lng: number;
+    address: string;
+  }) => void;
 }) => {
   const [pickedLocation, setPickedLocation] = useState<{
     lat: number;
@@ -36,9 +40,16 @@ const LocationPicker = ({
   }, [isFocused, route.params]);
 
   useEffect(() => {
-    if (pickedLocation) {
-      onPickLocation(pickedLocation);
-    }
+    const fetchAddress = async () => {
+      if (pickedLocation) {
+        const address = await getAddress(
+          pickedLocation.lat,
+          pickedLocation.lng,
+        );
+        onPickLocation({ ...pickedLocation, address });
+      }
+    };
+    fetchAddress();
   }, [pickedLocation, onPickLocation]);
 
   const getLocationHandler = async () => {

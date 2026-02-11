@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
+import { useCallback, useLayoutEffect, useState } from 'react';
 import { Alert, StyleSheet } from 'react-native';
 import MapView, {
   MapPressEvent,
@@ -63,10 +63,6 @@ const Map = () => {
     },
     [navigation, selectedLocation],
   );
-
-  useEffect(() => {
-    console.log('Map mounted', navigation.getState());
-  }, [navigation]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
