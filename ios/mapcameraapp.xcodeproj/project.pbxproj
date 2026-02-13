@@ -12,6 +12,8 @@
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8E4CE98B941416E5E0D352E1 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		D504B78991C2456997F41E57 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B0046E7A5E4B4493B92A53 /* BootSplash.storyboard */; };
+		A7CEBB86640D4283AFBAFE83 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A99FB71FA284C1ABBD5C580 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		BA5791772F3A8906001F5A63 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		BA5791782F3A8906001F5A63 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		D1B0046E7A5E4B4493B92A53 /* BootSplash.storyboard */ = {isa = PBXFileReference; name = "BootSplash.storyboard"; path = "mapcameraapp/BootSplash.storyboard"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6A99FB71FA284C1ABBD5C580 /* Colors.xcassets */ = {isa = PBXFileReference; name = "Colors.xcassets"; path = "mapcameraapp/Colors.xcassets"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = folder.assetcatalog; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
+				D1B0046E7A5E4B4493B92A53 /* BootSplash.storyboard */,
+				6A99FB71FA284C1ABBD5C580 /* Colors.xcassets */,
 			);
 			name = mapcameraapp;
 			sourceTree = "<group>";
@@ -185,6 +191,8 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				8E4CE98B941416E5E0D352E1 /* PrivacyInfo.xcprivacy in Resources */,
+				D504B78991C2456997F41E57 /* BootSplash.storyboard in Resources */,
+				A7CEBB86640D4283AFBAFE83 /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
