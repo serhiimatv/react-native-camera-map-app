@@ -10,11 +10,7 @@ const AddPlace = () => {
 
   const createPlaceHandler = async (place: Place) => {
     await insertPlace(place);
-    navigation.dispatch(
-      StackActions.popTo(NavigationList.AllPlaces, {
-        place,
-      }),
-    );
+    navigation.dispatch(StackActions.popTo(NavigationList.AllPlaces));
   };
 
   return <PlaceForm onCreatePlace={createPlaceHandler} />;

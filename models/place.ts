@@ -9,8 +9,9 @@ class Place {
     imageUri: string,
     address: string,
     location: { lat: number, lng: number },
+    id: string,
   ) {
-    this.id = new Date().toISOString() + Math.random().toString();
+    this.id = id;
     this.title = title;
     this.imageUri = imageUri;
     this.address = address;

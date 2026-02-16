@@ -30,8 +30,26 @@ export const insertPlace = async (place: Place) => {
         [place.title, place.imageUri, place.address, place.location.lat, place.location.lng]
       )
     }).then((result) => {
-      console.log(result);
       resolve(result);
+    }).catch((error) => {
+      console.error(error);
+      reject(error);
+    })
+  })
+}
+
+export const fetchPlaces = async (): Promise<Place[]> => {
+  return new Promise((resolve, reject) => {
+    database.transaction(async (tx) => {
+      return tx.executeAsync(`SELECT * FROM places`)
+    }).then((result) => {
+      const places: Place[] = [];
+      for (const row of result.rows?._array ?? [] as Place[]) {
+        const place = row as Place;
+        places.push(new Place(place.title, place.imageUri, place.address, place.location, place.id));
+      }
+
+      resolve(places);
     }).catch((error) => {
       console.error(error);
       reject(error);
