@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Animated, Dimensions, useAnimatedValue } from 'react-native';
 import BootSplash from 'react-native-bootsplash';
 
@@ -38,10 +37,6 @@ const AnimatedBootSplash = ({ onAnimationEnd }: Props) => {
       });
     },
   });
-
-  useEffect(() => {
-    console.log('opacity', opacity);
-  }, [opacity]);
 
   return (
     <Animated.View {...container} style={[container.style, { opacity }]}>
