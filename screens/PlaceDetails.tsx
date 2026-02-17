@@ -19,7 +19,12 @@ const PlaceDetails = () => {
     >();
 
   const showOnMapHandler = () => {
-    console.log('showOnMapHandler');
+    navigation.navigate(NavigationList.Map, {
+      initialLocation: {
+        lat: loadedPlace?.location.lat ?? 0,
+        lng: loadedPlace?.location.lng ?? 0,
+      },
+    });
   };
 
   const selectedPlaceId = route.params.placeId;
