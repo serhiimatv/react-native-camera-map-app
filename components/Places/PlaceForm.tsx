@@ -4,12 +4,12 @@ import { Colors } from '../../constants/colors';
 import ImagePicker from './ImagePicker';
 import LocationPicker from './LocationPicker';
 import Button from '../UI/Button';
-import Place from '../../models/place';
+import { InsertDatabasePlaceType } from '../../types/database-type.models';
 
 const PlaceForm = ({
   onCreatePlace,
 }: {
-  onCreatePlace: (place: Place) => void;
+  onCreatePlace: (place: InsertDatabasePlaceType) => void;
 }) => {
   const [enteredTitle, setEnteredTitle] = useState<string>('');
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -35,14 +35,16 @@ const PlaceForm = ({
   );
 
   const savePlaceHandler = () => {
-    const place = new Place(
-      enteredTitle,
-      selectedImage ?? '',
-      pickedLocation?.address ?? '',
-      pickedLocation
-        ? { lat: pickedLocation.lat, lng: pickedLocation.lng }
-        : { lat: 0, lng: 0 },
-    );
+    const place = {
+      title: enteredTitle,
+      imageUri: selectedImage ?? '',
+      address: pickedLocation?.address ?? '',
+      location: {
+        lat: pickedLocation?.lat ?? 0,
+        lng: pickedLocation?.lng ?? 0,
+      },
+    } satisfies InsertDatabasePlaceType;
+
     onCreatePlace(place);
   };
 

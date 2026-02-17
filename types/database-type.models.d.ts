@@ -1,3 +1,5 @@
+import Place from "../models/place";
+
 export interface PlaceDatabaseType {
   id: number;
   title: string;
@@ -6,3 +8,5 @@ export interface PlaceDatabaseType {
   lat: number;
   lng: number;
 }
+
+export type InsertDatabasePlaceType = Omit<Place, 'id'>;

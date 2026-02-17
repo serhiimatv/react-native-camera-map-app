@@ -1,6 +1,6 @@
 import { open } from "react-native-nitro-sqlite";
 import Place from "../models/place";
-import { PlaceDatabaseType } from "../types/database-type.models";
+import { InsertDatabasePlaceType, PlaceDatabaseType } from "../types/database-type.models";
 
 const database = open({ name: 'places.db' });
 
@@ -24,7 +24,7 @@ export const initDatabase = async () => {
   })
 }
 
-export const insertPlace = async (place: Place) => {
+export const insertPlace = async (place: InsertDatabasePlaceType) => {
   return new Promise((resolve, reject) => {
     database.transaction(async (tx) => {
       return tx.executeAsync(`INSERT INTO places (title, imageUri, address, lat, lng) VALUES (?, ?, ?, ?, ?)`,
