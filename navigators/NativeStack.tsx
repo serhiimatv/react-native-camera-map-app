@@ -11,6 +11,7 @@ import Map from '../screens/Map';
 import { NavigationList } from '../constants/navigation';
 import { AppNavigationParamList } from '../types/navigation.models';
 import useAppNavigation from '../hooks/useAppNavigation';
+import PlaceDetails from '../screens/PlaceDetails';
 
 const Stack = createNativeStackNavigator<AppNavigationParamList>();
 
@@ -70,6 +71,15 @@ const NativeStack = () => {
         component={Map}
         options={{
           title: 'Map',
+          headerBackButtonDisplayMode: 'default',
+          headerTitleAlign: 'center',
+        }}
+      />
+      <Stack.Screen
+        name="PlaceDetails"
+        component={PlaceDetails}
+        options={{
+          title: 'Loading place...',
           headerBackButtonDisplayMode: 'default',
           headerTitleAlign: 'center',
         }}

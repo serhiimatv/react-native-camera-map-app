@@ -4,8 +4,16 @@ import PlaceItem from './PlaceItem';
 
 import Place from '../../models/place';
 import { Colors } from '../../constants/colors';
+import useAppNavigation from '../../hooks/useAppNavigation';
+import { NavigationList } from '../../constants/navigation';
 
 const PlacesList = ({ places }: { places?: Place[] }) => {
+  const navigation = useAppNavigation();
+
+  const selectPlaceHandler = (id: number) => {
+    navigation.navigate(NavigationList.PlaceDetails, { placeId: id });
+  };
+
   if (!places || places.length === 0) {
     return (
       <View style={styles.fallbackContainer}>
@@ -19,8 +27,10 @@ const PlacesList = ({ places }: { places?: Place[] }) => {
     <FlatList
       style={styles.list}
       data={places}
-      keyExtractor={item => item.id}
-      renderItem={({ item }) => <PlaceItem place={item} />}
+      keyExtractor={item => item.id.toString()}
+      renderItem={({ item }) => (
+        <PlaceItem place={item} onSelect={selectPlaceHandler} />
+      )}
     />
   );
 };

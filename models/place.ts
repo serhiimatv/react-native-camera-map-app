@@ -1,5 +1,5 @@
 class Place {
-  id: string;
+  id: number;
   title: string;
   imageUri: string;
   address: string;
@@ -9,7 +9,7 @@ class Place {
     imageUri: string,
     address: string,
     location: { lat: number, lng: number },
-    id: string,
+    id: number,
   ) {
     this.id = id;
     this.title = title;
